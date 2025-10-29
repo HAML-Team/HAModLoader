@@ -1,0 +1,59 @@
+<color=#f0f0f0>HYBRID</color> ANIMALS~<color=#f0f0f0>HYBRYD</color> ZWIERZĄT
+<color=#ffffff>HYBRID</color> ANIMALS~<color=#ffffff>HYBRYD</color> ZWIERZĄT
+<color=#bbbbbb>HYBRID</color> ANIMALS~<color=#bbbbbb>HYBRYD</color> ZWIERZĄT
+<color=#727272>HYBRID</color> ANIMALS~<color=#727272>HYBRYD</color> ZWIERZĄT
+
+Who dares to disturb the great 'Vitamin Ape'?!~Kto ośmiela się przeszkadzać wspaniałej „Witamiej Małpie”?
+I am half Carrot, half Gorilla!~Jestem pół marchewką, pół gorylem!
+I am the keeper of all the world's secrets!~Jestem strażnikiem wszystkich tajemnic świata!
+Certainly.~Na pewno.
+If you play 'Hybrid Animals' on Wednesdays~Jeśli grasz „Hybryd Zwierzat” w środy
+you can test all premium creatures for free!~możesz przetestować wszystkie stwory premium za darmo!
+However..~Jednak..
+they will disappear the next day, unless you buy them.~znikną następnego dnia, chyba że je kupisz.
+You can test the premium creatures every Wednesday!~Możesz testować stwory premium w każdą środę!
+I have no new secrets for now.~Na razie nie mam nowych tajemnic.
+
+[What are you?]~[Czym jesteś?]
+[Who are you?]~[Kim jesteś?]
+[Tell me a secret]~[Powiedz mi sekret]
+[Tell me another secret]~[Powiedz mi kolejny sekret]
+
+The Vitamin Ape~Witamiej Małpie
+
+Wednesdays~środy
+every Wednesday!~każdą środę!
+all premium creatures for free!~wszystkie stwory premium za darmo!
+
+You keep everything!~Trzymaj wszystko!
+Start a new game, with a new creature.~Rozpocznij nową grę z nowym stworzeniem.
+You lose the items in your inventory.~Tracisz przedmioty w ekwipunku.
+You lose the items in your inventory, and lose 999 levels.~Tracisz przedmioty w ekwipunku i tracisz 999 poziomów.
+
+REVIVE~WSKRZESIĆ
+RESPAWN~RESPAWN
+RESTART~RESTART
+
+Double-tap to use/place objects~Stuknij dwukrotnie, aby użyć / umieścić obiekty
+Double-tap to sell items~Stuknij dwukrotnie, aby sprzedawać przedmioty
+
+Remove Ads~Usuń reklamy
+More Animals~Więcej zwierząt
+Mutation~Mutacja
+Huge Inventory~Ogromny ekwipunek
+Companion Egg~Jajko towarzyszące
+Furniture Pack~Zestaw mebli
+
+Permanently removes ads!~Trwale usuwa reklamy!
+Mix your current hybrid with ANOTHER animal! Also, gain 2 levels!~Mieszaj swoją obecną hybrydę z INNYM zwierzęciem! Zdobądź także 2 poziomy!
+Permanently adds a second page to your inventory!~Trwale dodaje drugą stronę do ekwipunku!
+Hatches into a friendly monster that follows you and fights with you!~Włazy do przyjaznego potwora, który podąża za tobą i walczy z tobą!
+Unlocks 8 new furniture recipes!~Odblokowuje 8 nowych receptur mebli!
+
++ COW`+ RAPTOR`+ KOMODO DRAGON`+ SKUNK`+ PANDA~+ KROWA`+ RAPTOR`+ KOMODO DRAGON`+ SKUNKS`+ PANDA
++ KITTEN`+ ASTRONAUT`+ DEVIL`+ TREE`+ PLASTIC SLIDE~+ KOTEK`+ ASTRONAUTA`+ DIABEŁ`+ DRZEWO`+ SLAJD Z TWORZYWA SZTUCZNEGO
++ DRAGON`+ FLAMINGO`+ GRASSHOPPER`+ FLY`+ EAGLE~+ SMOK`+ FLAMING`+ KONIK POLNY`+ LATAĆ`+ ORZEŁ
++ HOTDOG`+ FRENCH FRIES`+ DOUGHNUT`+ PIZZA SLICE`+ CHICKEN WING~+ HOTDOG`+ FRYTKI`+ PĄCZEK`+ KAWAŁEK PIZZY`+ SKRZYDEŁKO KURCZAKA
++ BICYCLE`+ GARBAGE TRUCK`+ HELICOPTER`+ AIRPLANE`+ CAR~+ ROWER`+ ŚMIECIARKA`+ ŚMIGŁOWIEC`+ SAMOLOT`+ SAMOCHÓD
++ AVOCADO`+ PUMPKIN`+ CORN`+ CARROT`+ ASPARAGUS~+ AWOKADO`+ DYNIA`+ KUKURYDZA`+ MARCHEWKA`+ SZPARAG
++ BANANA`+ PINEAPPLE`+ COOKIE`+ CUPCAKE`+ WATERMELON~+ BANAN`+ ANANAS`+ CIASTKO`+ BABECZKA`+ ARBUZ

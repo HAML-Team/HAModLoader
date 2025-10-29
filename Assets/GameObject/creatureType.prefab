@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1598048263664644
+GameObject:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Component:
+  - component: {fileID: 4883055045823758}
+  - component: {fileID: 135984856755970599}
+  - component: {fileID: 54965479769251200}
+  - component: {fileID: 114263517060706882}
+  - component: {fileID: 114863151761322232}
+  m_Layer: 8
+  m_Name: creatureType
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4883055045823758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598048263664644}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.6292068E-07}
+  m_LocalPosition: {x: -8.46643, y: 1.621, z: 6.2373543}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 180, y: 1.8669336E-05, z: 180}
+--- !u!135 &135984856755970599
+SphereCollider:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598048263664644}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &54965479769251200
+Rigidbody:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598048263664644}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &114263517060706882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598048263664644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304f3d2ea2a858410f5c2864760370d2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  mob_identifying_name:
+  HP_start: -1
+  exp_recieve: -1
+  respawn_time: 50
+  mob_type: 3
+  item_recieve_on_kill:
+  scale: 1
+  extra_combat_dist: 0.2
+  origin: {x: 0, y: 0, z: 0}
+  HP: 0
+  healthbar: {fileID: 0}
+  amount_dec_acc: 0
+  amount_dec_dmg: 0
+  amount_bind: 0
+  amount_poison: 0
+  amount_giant: 0
+  amount_eagle: 0
+  amount_sprint: 0
+  vis_webD: {fileID: 0}
+  vis_screechD: {fileID: 0}
+  vis_weakenD: {fileID: 0}
+  vis_poison: {fileID: 0}
+  who_poisoned_me: {fileID: 0}
+--- !u!114 &114863151761322232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598048263664644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd58ec441bdad06ebcb96a873cc20f56, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  ramDMG: 0
+  isRamming: 0
+  walk_speed: 0
+  myCreatureModel: {fileID: 0}
+  override_wander: 0
+  levelDisplay: {fileID: 0}
+  generic_moveTo: {x: 0, y: 0, z: 0}
+  targetCombatant: {fileID: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  stopMoving: 0
+  level: 0
+  packMates_: []
+  STATE: 0
+  AI_lockon_range: 3.8
+  friendly_creatureA: 0
+  friendly_creatureB: 0
+  friendly_exp: 0
+  friendly_nextLevelExp: 0
+  online_position: {x: 0, y: 0, z: 0}
+  hatch_index_: 0
+  attack_cooldown_n: 0
+  moving_at: {x: 0, y: 0, z: 0}
+  mutantParticle: {fileID: 0}
+  isGiant: 0
+  sprint: 0
+  extra_interact_dist: 0.5

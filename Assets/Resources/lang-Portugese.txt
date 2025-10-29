@@ -1,0 +1,59 @@
+<color=#f0f0f0>HYBRID</color> ANIMALS~<color=#f0f0f0>ANIMAIS</color> HÍBRIDO
+<color=#ffffff>HYBRID</color> ANIMALS~<color=#ffffff>ANIMAIS</color> HÍBRIDO
+<color=#bbbbbb>HYBRID</color> ANIMALS~<color=#bbbbbb>ANIMAIS</color> HÍBRIDO
+<color=#727272>HYBRID</color> ANIMALS~<color=#727272>ANIMAIS</color> HÍBRIDO
+
+Who dares to disturb the great 'Vitamin Ape'?!~Quem se atreve a perturbar o grande 'Macaco Vitamina'?!
+I am half Carrot, half Gorilla!~Eu sou meia cenoura, metade gorila!
+I am the keeper of all the world's secrets!~Eu sou o guardião de todos os segredos do mundo!
+Certainly.~Certamente.
+If you play 'Hybrid Animals' on Wednesdays~Se você jogar 'Animais Híbridos' às quartas-feiras
+you can test all premium creatures for free!~você pode testar todas as criaturas premium de graça!
+However..~Contudo..
+they will disappear the next day, unless you buy them.~eles desaparecerão no dia seguinte, a menos que você os compre.
+You can test the premium creatures every Wednesday!~Você pode testar as criaturas premium toda quarta-feira!
+I have no new secrets for now.~Eu não tenho novos segredos por enquanto.
+
+[What are you?]~[O que você é?]
+[Who are you?]~[Quem é Você?]
+[Tell me a secret]~[Conte-me um segredo]
+[Tell me another secret]~[Me conte outro segredo]
+
+The Vitamin Ape~O Macaco Vitamina
+
+Wednesdays~quartas-feiras
+every Wednesday!~toda quarta-feira!
+all premium creatures for free!~todas as criaturas premium de graça!
+
+You keep everything!~Você mantém tudo!
+Start a new game, with a new creature.~Comece um novo jogo com uma nova criatura.
+You lose the items in your inventory.~Você perde os itens em seu inventário.
+You lose the items in your inventory, and lose 999 levels.~Você perde os itens em seu inventário e perde 999 níveis.
+
+REVIVE~REVIVER
+RESPAWN~REAPARECIMENTO
+RESTART~REINICIAR
+
+Double-tap to use/place objects~Toque duas vezes para usar / colocar objetos
+Double-tap to sell items~Toque duas vezes para vender itens
+
+Remove Ads~Remover propagandas
+More Animals~Mais animais
+Mutation~Mutação
+Huge Inventory~Inventário enorme
+Companion Egg~Ovo Companheiro
+Furniture Pack~Pack de Móveis
+
+Permanently removes ads!~Remove permanentemente anúncios!
+Mix your current hybrid with ANOTHER animal! Also, gain 2 levels!~Misture seu híbrido atual com outro animal! Além disso, ganhe 2 níveis!
+Permanently adds a second page to your inventory!~Adicione permanentemente uma segunda página ao seu inventário!
+Hatches into a friendly monster that follows you and fights with you!~Hatches em um monstro amigável que segue você e luta com você!
+Unlocks 8 new furniture recipes!~Desbloqueia 8 novas receitas de móveis!
+
++ COW`+ RAPTOR`+ KOMODO DRAGON`+ SKUNK`+ PANDA~+ VACA`+ RAPTOR`+ DRAGÃO DE KOMODO`+ JARITATACA`+ PANDA
++ KITTEN`+ ASTRONAUT`+ DEVIL`+ TREE`+ PLASTIC SLIDE~+ GATINHO`+ ASTRONAUTA`+ DIABO`+ ÁRVORE`+ SLIDE PLÁSTICO
++ DRAGON`+ FLAMINGO`+ GRASSHOPPER`+ FLY`+ EAGLE~+ DRAGÃO`+ FLAMINGO`+ GAFANHOTO`+ MOSCA`+ ÁGUIA
++ HOTDOG`+ FRENCH FRIES`+ DOUGHNUT`+ PIZZA SLICE`+ CHICKEN WING~+ CACHORRO QUENTE`+ BATATAS FRITAS`+ ROSQUINHA`+ FATIA DE PIZZA`+ ASA DE GALINHA
++ BICYCLE`+ GARBAGE TRUCK`+ HELICOPTER`+ AIRPLANE`+ CAR~+ BICICLETA`+ CAMINHÃO DE LIXO`+ HELICÓPTERO`+ AVIÃO`+ CARRO
++ AVOCADO`+ PUMPKIN`+ CORN`+ CARROT`+ ASPARAGUS~+ ABACATE`+ ABÓBORA`+ MILHO`+ CENOURA`+ ESPARGOS
++ BANANA`+ PINEAPPLE`+ COOKIE`+ CUPCAKE`+ WATERMELON~+ BANANA`+ ABACAXI`+ BISCOITO`+ BOLINHO`+ MELANCIA

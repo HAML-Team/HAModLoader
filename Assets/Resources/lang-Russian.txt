@@ -1,0 +1,59 @@
+<color=#f0f0f0>HYBRID</color> ANIMALS~<size=73><color=#f0f0f0>ГИБРИД</color> ЖИВОТНЫЕ</size>
+<color=#ffffff>HYBRID</color> ANIMALS~<size=73><color=#ffffff>ГИБРИД</color> ЖИВОТНЫЕ</size>
+<color=#bbbbbb>HYBRID</color> ANIMALS~<size=73><color=#bbbbbb>ГИБРИД</color> ЖИВОТНЫЕ</size>
+<color=#727272>HYBRID</color> ANIMALS~<size=73><color=#727272>ГИБРИД</color> ЖИВОТНЫЕ</size>
+
+Who dares to disturb the great 'Vitamin Ape'?!~Кто посмеет потревожить великую «Витаминную обезьяну»?!
+I am half Carrot, half Gorilla!~Я наполовину Морковь, наполовину Горилла!
+I am the keeper of all the world's secrets!~Я хранитель всех мировых секретов!
+Certainly.~Конечно.
+If you play 'Hybrid Animals' on Wednesdays~Если вы играете в «Гибрид животные» по средам
+you can test all premium creatures for free!~Вы можете протестировать все премиальные существа бесплатно!
+However..~Тем не мение..
+they will disappear the next day, unless you buy them.~они исчезнут на следующий день, если вы не купите их.
+You can test the premium creatures every Wednesday!~Вы можете тестировать премиальных существ каждую среду!
+I have no new secrets for now.~У меня пока нет новых секретов.
+
+[What are you?]~[Что ты такое?]
+[Who are you?]~[Кто ты?]
+[Tell me a secret]~[Расскажи мне секрет]
+[Tell me another secret]~[Расскажи мне еще один секрет]
+
+The Vitamin Ape~Витаминная обезьяна
+
+Wednesdays~средам
+every Wednesday!~каждую среду!
+all premium creatures for free!~все премиальные существа бесплатно!
+
+You keep everything!~Вы держите все!
+Start a new game, with a new creature.~Начните новую игру с новым существом.
+You lose the items in your inventory.~Вы теряете предметы в инвентаре.
+You lose the items in your inventory, and lose 999 levels.~Вы теряете предметы в инвентаре и теряете 999 уровней.
+
+REVIVE~оживать
+RESPAWN~РЕСПАУН
+RESTART~ЗАПУСТИТЬ СНОВА
+
+Double-tap to use/place objects~Дважды нажмите, чтобы использовать / разместить объекты
+Double-tap to sell items~Дважды нажмите, чтобы продать предметы
+
+Remove Ads~Убрать рекламу
+More Animals~Больше животных
+Mutation~перегласовка
+Huge Inventory~Огромный инвентарь
+Companion Egg~Яйцо-компаньон
+Furniture Pack~Пакет мебели
+
+Permanently removes ads!~Навсегда удаляет рекламу!
+Mix your current hybrid with ANOTHER animal! Also, gain 2 levels!~Смешайте свой нынешний гибрид с другим животным! Кроме того, получить 2 уровня!
+Permanently adds a second page to your inventory!~Постоянно добавляет в свой инвентарь вторую страницу!
+Hatches into a friendly monster that follows you and fights with you!~Высиживает дружелюбного монстра, который следует за вами и сражается с вами!
+Unlocks 8 new furniture recipes!~Открывает 8 новых рецептов мебели!
+
++ COW`+ RAPTOR`+ KOMODO DRAGON`+ SKUNK`+ PANDA~+ КОРОВА`+ RAPTOR`+ ДРАКОН КОМОДО`+ скунс`+ ПАНДА
++ KITTEN`+ ASTRONAUT`+ DEVIL`+ TREE`+ PLASTIC SLIDE~+ КОТЕНОК`+ КОСМОНАВТ`+ дьявол`+ ДЕРЕВО`+ ПЛАСТИКОВЫЕ СЛАЙДЫ
++ DRAGON`+ FLAMINGO`+ GRASSHOPPER`+ FLY`+ EAGLE~+ ДРАКОН`+ ФЛАМИНГО`+ КУЗНЕЧИК`+ муха`+ орел
++ HOTDOG`+ FRENCH FRIES`+ DOUGHNUT`+ PIZZA SLICE`+ CHICKEN WING~+ ХОТ-ДОГ`+ ЖАРЕНЫЙ КАРТОФЕЛЬ`+ ПОНЧИК`+ КУСОК ПИЦЦЫ`+ КУРИНОЕ КРЫЛО
++ BICYCLE`+ GARBAGE TRUCK`+ HELICOPTER`+ AIRPLANE`+ CAR~+ ВЕЛОСИПЕДЫ`+ МУСОРОВОЗ`+ ВЕРТОЛЕТ`+ САМОЛЕТ`+ АВТОМОБИЛЬ
++ AVOCADO`+ PUMPKIN`+ CORN`+ CARROT`+ ASPARAGUS~+ АВОКАДО`+ ТЫКВЫ`+ КУКУРУЗА`+ МОРКОВЬ`+ СПАРЖА
++ BANANA`+ PINEAPPLE`+ COOKIE`+ CUPCAKE`+ WATERMELON~+ БАНАН`+ АНАНАС`+ ПЕЧЕНЬЕ`+ CUPCAKE`+ АРБУЗ

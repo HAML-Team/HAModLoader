@@ -1,0 +1,59 @@
+<color=#f0f0f0>HYBRID</color> ANIMALS~<SIZE=110><color=#f0f0f0>สัตว์</color>ไฮบริด</size>
+<color=#ffffff>HYBRID</color> ANIMALS~<SIZE=110><color=#ffffff>สัตว์</color>ไฮบริด</size>
+<color=#bbbbbb>HYBRID</color> ANIMALS~<SIZE=110><color=#bbbbbb>สัตว์</color>ไฮบริด</size>
+<color=#727272>HYBRID</color> ANIMALS~<SIZE=110><color=#727272>สัตว์</color>ไฮบริด</size>
+
+Who dares to disturb the great 'Vitamin Ape'?!~ใครกล้ารบกวน ลิงวิตามิน ที่ยอดเยี่ยม?!
+I am half Carrot, half Gorilla!~ฉันเป็นแครอทครึ่งลูกครึ่งกอริลลา!
+I am the keeper of all the world's secrets!~ฉันเป็นผู้รักษาความลับของโลก!
+Certainly.~อย่างแน่นอน
+If you play 'Hybrid Animals' on Wednesdays~หากคุณเล่น 'สัตว์ไฮบริด' ในวันพุธ
+you can test all premium creatures for free!~คุณสามารถทดสอบสิ่งมีชีวิตระดับพรีเมี่ยมได้ฟรี!
+However..~อย่างไรก็ตาม
+they will disappear the next day, unless you buy them.~พวกเขาจะหายไปในวันถัดไปเว้นแต่คุณจะซื้อ
+You can test the premium creatures every Wednesday!~คุณสามารถทดสอบสิ่งมีชีวิตระดับพรีเมี่ยมได้ทุกวันพุธ!
+I have no new secrets for now.~ตอนนี้ฉันไม่มีความลับใหม่
+
+[What are you?]~[คุณคืออะไร?]
+[Who are you?]~[คุณคือใคร?]
+[Tell me a secret]~[บอกความลับกับฉัน]
+[Tell me another secret]~[บอกความลับอื่นให้ฉัน]
+
+The Vitamin Ape~ลิงวิตามิน
+
+Wednesdays~วันพุธ
+every Wednesday!~ทุกวันพุธ!
+all premium creatures for free!~สิ่งมีชีวิตระดับพรีเมี่ยมได้ฟรี!
+
+You keep everything!~คุณเก็บทุกอย่างไว้!
+Start a new game, with a new creature.~เริ่มเกมใหม่`ด้วยสิ่งมีชีวิตใหม่
+You lose the items in your inventory.~คุณสูญเสีย`รายการ`ในสินค้าคงคลัง`ของคุณ
+You lose the items in your inventory, and lose 999 levels.~คุณสูญเสีย`รายการ`ในสินค้าคงคลัง`ของคุณ`และสูญเสีย 999 ระดับ
+
+REVIVE~ฟื้น
+RESPAWN~RESPAWN
+RESTART~เริ่มต้นใหม่
+
+Double-tap to use/place objects~แตะสองครั้งเพื่อใช้ / วางวัตถุ
+Double-tap to sell items~แตะสองครั้งเพื่อขายสินค้า
+
+Remove Ads~ลบโฆษณา
+More Animals~สัตว์อื่น ๆ
+Mutation~การกลายพันธุ์
+Huge Inventory~สินค้าคงคลังขนาดใหญ่
+Companion Egg~ไข่สหาย
+Furniture Pack~ชุดเฟอร์นิเจอร์
+
+Permanently removes ads!~อย่างถาวร`ลบโฆษณา!
+Mix your current hybrid with ANOTHER animal! Also, gain 2 levels!~ผสมไฮบริด`ปัจจุบันของคุณ`กับสัตว์อีก!`นอกจากนี้ยังได้รับ`2 ระดับ!
+Permanently adds a second page to your inventory!~เพิ่มอย่างถาวร`หน้าที่สองไปที่`สินค้าคงคลังของคุณ!
+Hatches into a friendly monster that follows you and fights with you!~ฟักเป็น`สัตว์ประหลาดที่เป็นมิตร`ที่ติดตามคุณและ`ต่อสู้กับคุณ!
+Unlocks 8 new furniture recipes!~ปลดล็อก 8 สูตรเฟอร์นิเจอร์ใหม่!
+
++ COW`+ RAPTOR`+ KOMODO DRAGON`+ SKUNK`+ PANDA~+ วัว`+ แร็ปเตอร์`+ มังกรโคโมโด`+ ตัวเหม็น`+ หมีแพนด้า
++ KITTEN`+ ASTRONAUT`+ DEVIL`+ TREE`+ PLASTIC SLIDE~+ ลูกแมว`+ มนุษย์อวกาศ`+ ปีศาจ`+ ต้นไม้`+ สไลด์พลาสติก
++ DRAGON`+ FLAMINGO`+ GRASSHOPPER`+ FLY`+ EAGLE~+ มังกร`+ นกกระเรียน`+ ตั๊กแตน`+ บิน`+ นกอินทรีย์
++ HOTDOG`+ FRENCH FRIES`+ DOUGHNUT`+ PIZZA SLICE`+ CHICKEN WING~+ ฮอทดอก`+ มันฝรั่งทอด`+ โดนัท`+ พิซซ่าชิ้นเล็กชิ้นน้อย`+ ปีกไก่
++ BICYCLE`+ GARBAGE TRUCK`+ HELICOPTER`+ AIRPLANE`+ CAR~+ รถจักรยาน`+ รถขนขยะ`+ เฮลิคอปเตอร์`+ เครื่องบิน`+ รถ
++ AVOCADO`+ PUMPKIN`+ CORN`+ CARROT`+ ASPARAGUS~+ อาโวคาโด`+ ฟักทอง`+ ข้าวโพด`+ แครอท`+ หน่อไม้ฝรั่ง
++ BANANA`+ PINEAPPLE`+ COOKIE`+ CUPCAKE`+ WATERMELON~+ กล้วย`+ สัปปะรด`+ คุกกี้`+ คัพเค้ก`+ แตงโม
