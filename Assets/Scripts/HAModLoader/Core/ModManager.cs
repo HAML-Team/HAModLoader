@@ -23,7 +23,7 @@ using HAModLoaderAPI;
             logDir = Path.Combine(Application.streamingAssetsPath, "Logs");
 #endif
 #if UNITY_ANDROID
-    logDir = $"/storage/emulated/0/Android/media/{Application.identifier}/Logs";
+    logDir = $"/storage/emulated/0/Android/obb/{Application.identifier}/Logs";
 #elif UNITY_STANDALONE_WIN
     logDir = Path.Combine(Application.dataPath, "../Logs");
 #elif UNITY_STANDALONE_LINUX
@@ -115,7 +115,7 @@ using HAModLoaderAPI;
         {
             string dir;
 #if UNITY_ANDROID
-    dir = $"/storage/emulated/0/Android/media/{Application.identifier}/Mods";
+    dir = $"/storage/emulated/0/Android/obb/{Application.identifier}/Mods";
 #elif UNITY_STANDALONE_WIN
     dir = Path.Combine(Application.dataPath, "../Mods");
 #elif UNITY_STANDALONE_LINUX
