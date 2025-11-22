@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Globalization;
 using UnityEngine.Advertisements;
 using UnityEngine;
 
@@ -638,19 +639,21 @@ public class Loader : MonoBehaviour
         gameObject.GetComponent<creatureModel>().myName = myname;
         using (StreamReader streamReader = new StreamReader(path))
         {
-            gameObject.GetComponent<creatureModel>().height = float.Parse(streamReader.ReadLine());
+            // Use CultureInfo.InvariantCulture for all numeric parsing so Windows/locale differences
+            // (decimal separators etc.) do not break parsing of .tbc files which are dot-separated.
+            gameObject.GetComponent<creatureModel>().height = float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
             gameObject.GetComponent<creatureModel>().height_set = true;
             Color white = Color.white;
-            white.r = float.Parse(streamReader.ReadLine());
-            white.g = float.Parse(streamReader.ReadLine());
-            white.b = float.Parse(streamReader.ReadLine());
+            white.r = float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
+            white.g = float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
+            white.b = float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
             gameObject.GetComponent<creatureModel>().myCol = white;
             streamReader.ReadLine();
-            int.Parse(streamReader.ReadLine());
-            gameObject.GetComponent<creatureModel>().seed = float.Parse(streamReader.ReadLine());
+            int.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
+            gameObject.GetComponent<creatureModel>().seed = float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
             gameObject.GetComponent<creatureModel>().namePrefix = streamReader.ReadLine();
             gameObject.GetComponent<creatureModel>().nameSuffix = streamReader.ReadLine();
-            int num = int.Parse(streamReader.ReadLine());
+            int num = int.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
             streamReader.ReadLine();
             array = new GameObject[num];
             gameObject.GetComponent<creatureModel>().children_ = array;
@@ -682,35 +685,35 @@ public class Loader : MonoBehaviour
                 component.symmetrical = bool.Parse(streamReader.ReadLine());
                 array[j].GetComponent<limb_scr>().invertSymmAnm = bool.Parse(streamReader.ReadLine());
                 component.inherit = bool.Parse(streamReader.ReadLine());
-                visual.transform.localScale = new Vector3(float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()));
-                visual.transform.localPosition = new Vector3(float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()));
-                int num2 = int.Parse(streamReader.ReadLine());
+                visual.transform.localScale = new Vector3(float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture));
+                visual.transform.localPosition = new Vector3(float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture));
+                int num2 = int.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
                 if (num2 != -1)
                 {
                     component.parent_ = array[num2];
                     component.create_snap(component.parent_.GetComponent<limb_scr>().visual.transform);
                 }
                 component.children_ = new List<GameObject>();
-                int num3 = int.Parse(streamReader.ReadLine());
+                int num3 = int.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
                 for (int k = 0; k < num3; k++)
                 {
-                    component.children_.Add(array[int.Parse(streamReader.ReadLine())]);
+                    component.children_.Add(array[int.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture)]);
                 }
                 for (int l = 0; l < 4; l++)
                 {
-                    component.hsv_values[l] = float.Parse(streamReader.ReadLine());
+                    component.hsv_values[l] = float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
                 }
                 component.textureName = streamReader.ReadLine();
                 setCubeColor(component.hsv_values, array[j], gameObject.GetComponent<creatureModel>().myCol);
                 setTexture(component.textureName, array[j]);
-                int num4 = int.Parse(streamReader.ReadLine());
+                int num4 = int.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
                 for (int m = 0; m < num4; m++)
                 {
-                    int num5 = int.Parse(streamReader.ReadLine());
+                    int num5 = int.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture);
                     for (int n = 0; n < num5; n++)
                     {
-                        Quaternion quaternion = new Quaternion(float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()));
-                        Vector3 vector = new Vector3(float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()), float.Parse(streamReader.ReadLine()));
+                        Quaternion quaternion = new Quaternion(float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture));
+                        Vector3 vector = new Vector3(float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture), float.Parse(streamReader.ReadLine(), CultureInfo.InvariantCulture));
                         if (n < component.frames_rotations[m].Length)
                         {
                             component.frames_rotations[m][n] = quaternion;
