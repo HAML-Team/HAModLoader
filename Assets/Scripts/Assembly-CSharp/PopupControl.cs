@@ -71,14 +71,19 @@ public class PopupControl : MonoBehaviour
 
 #if UNITY_ANDROID
             // On Android, show the normal connect flow (MultiplayerControl will set connect_fail_already)
-            if (MultiplayerControl.Instance != null && MultiplayerControl.Instance.connect_fail_already)
+            /*if (MultiplayerControl.Instance != null && MultiplayerControl.Instance.connect_fail_already)
             {
                 ShowMessage("Couldn't connect to Google Play services.");
             }
             else
             {
                 ShowConnecting("Connecting to Google Play Services");
+            }*/
+			if (MultiplayerControl.Instance != null)
+            {
+                MultiplayerControl.Instance.connect_fail_already = true;
             }
+            HideAll();
 #else
             // Not Android (Windows / Editor / other) — don't show stuck connecting screen.
             // Mark services as failed so other code knows not to wait.
