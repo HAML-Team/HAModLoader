@@ -325,6 +325,24 @@ public class GameController : MonoBehaviour
 
 	public GameObject prefab_teleport;
 
+	// Optional: assign these in the Inspector to avoid string-based GameObject.Find
+	[Header("In-Game Overlay (optional)")]
+	[Tooltip("Assign the overlay canvas if you have it in the scene. If left empty the code will attempt GameObject.Find by name.")]
+	[SerializeField]
+	private GameObject overlayCanvas;
+
+	[Tooltip("Assign the overlay message object if you have it in the scene.")]
+	[SerializeField]
+	private GameObject overlayMessage;
+
+	[Tooltip("Assign the overlay Okay button if you have it in the scene.")]
+	[SerializeField]
+	private GameObject overlayOkayButton;
+
+	// Runtime scanner to find overlay objects that may live in DontDestroyOnLoad
+	private Coroutine overlayScannerCoroutine;
+	private bool pendingOverlayShow = false;
+
 	private void Start()
 	{
 		PopupControl.Instance.GetComponent<Canvas>().worldCamera = Shop_positioner.Instance.GetComponent<Camera>();
@@ -339,6 +357,12 @@ public class GameController : MonoBehaviour
 			Got_Highscore(true, 1);
 		}
 		cam_offset = calculate_cam_offset((float)Screen.width / (float)Screen.height);
+
+		// start background scanner to detect overlay objects that may come from DontDestroyOnLoad
+		if (overlayScannerCoroutine == null)
+		{
+			overlayScannerCoroutine = StartCoroutine(OverlayScanner());
+		}
 	}
 
 	public float calc_slider(slider_type type)
@@ -1072,10 +1096,331 @@ public class GameController : MonoBehaviour
 
 	public void PressViewAchievements()
 	{
-		Instance.button_clicked = true;
-		Social.ShowAchievementsUI();
+		// defensive: Instance might be null if this was invoked before Awake()
+		if (Instance != null)
+		{
+			Instance.button_clicked = true;
+		}
+		else
+		{
+			Debug.LogWarning("GameController.Instance is null in PressViewAchievements().");
+		}
+
+		// If achievements are disabled (e.g. you removed Google Play Games), skip showing platform UI
+		if (MultiplayerControl.Instance == null || !MultiplayerControl.Instance.achievementsEnabled)
+		{
+			Debug.Log("Achievements disabled or MultiplayerControl missing. Skipping ShowAchievementsUI().");
+			// still show local info overlay as fallback
+			ShowInGameOverlay();
+			return;
+		}
+
+		// Ensure there's an active social provider and user is authenticated
+		if (Social.Active == null || Social.localUser == null || !Social.localUser.authenticated)
+		{
+			Debug.LogWarning("Cannot show Achievements UI: no active social provider or user not authenticated.");
+			ShowInGameOverlay();
+			return;
+		}
+
+		try
+		{
+			Social.ShowAchievementsUI();
+		}
+		catch (System.Exception e)
+		{
+			Debug.LogError("Exception while showing achievements UI: " + e);
+		}
+
+		// original behaviour: show in-game overlay (if objects are not ready, mark pending so scanner will show when found)
+		// Prefer inspector-assigned references; if any are missing, start the scanner which will look in DontDestroyOnLoad roots.
+		if (overlayCanvas == null || overlayMessage == null || overlayOkayButton == null)
+		{
+			pendingOverlayShow = true;
+			if (overlayScannerCoroutine == null)
+			{
+				overlayScannerCoroutine = StartCoroutine(OverlayScanner());
+			}
+			Debug.Log("PressViewAchievements: overlay objects not all present yet, will show when available.");
+		}
+		else
+		{
+			ShowInGameOverlay();
+		}
 	}
 
+	private void ShowInGameOverlay()
+	{
+		// Prefer inspector-assigned references. If missing, search the DontDestroyOnLoad roots
+		// (returned by GetDontDestroyOnLoadObjects) and look through their hierarchies.
+		GameObject canvasGO = overlayCanvas;
+		GameObject messageGO = overlayMessage;
+		GameObject buttonGO = overlayOkayButton;
+
+		if (canvasGO == null || messageGO == null || buttonGO == null)
+		{
+			GameObject[] roots = GetDontDestroyOnLoadObjects();
+			foreach (GameObject root in roots)
+			{
+				if (root == null) continue;
+				Transform[] all = root.GetComponentsInChildren<Transform>(true);
+				foreach (Transform t in all)
+				{
+					if (t == null || string.IsNullOrEmpty(t.name)) continue;
+					string n = t.name.ToLower();
+					if (canvasGO == null && (n == "canvas - black overlay" || n.Contains("canvas")))
+					{
+						canvasGO = t.gameObject;
+						Debug.Log("ShowInGameOverlay: Found overlay canvas in DontDestroyOnLoad: " + t.name);
+					}
+					if (messageGO == null && (n == "(center) generic message" || n.Contains("message")))
+					{
+						messageGO = t.gameObject;
+						Debug.Log("ShowInGameOverlay: Found overlay message in DontDestroyOnLoad: " + t.name);
+					}
+					if (buttonGO == null && (n == "(bottom) okay button" || n.Contains("ok") || n.Contains("button")))
+					{
+						buttonGO = t.gameObject;
+						Debug.Log("ShowInGameOverlay: Found overlay button in DontDestroyOnLoad: " + t.name);
+					}
+					if (canvasGO != null && messageGO != null && buttonGO != null) break;
+				}
+				if (canvasGO != null && messageGO != null && buttonGO != null) break;
+			}
+
+			if (canvasGO == null) Debug.LogWarning("ShowInGameOverlay: Overlay canvas not found.");
+			if (messageGO == null) Debug.LogWarning("ShowInGameOverlay: Overlay message not found.");
+			if (buttonGO == null) Debug.LogWarning("ShowInGameOverlay: Overlay button not found.");
+		}
+
+		// Prepare and show (if found)
+		ShowGameObjectAndParents(canvasGO);
+		ShowGameObjectAndParents(messageGO);
+		ShowGameObjectAndParents(buttonGO);
+	}
+
+	public static GameObject[] GetDontDestroyOnLoadObjects()
+	{
+    	GameObject temp = null;
+    	try
+    	{
+    	    temp = new GameObject();
+    	    Object.DontDestroyOnLoad( temp );
+    	    UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
+    	    Object.DestroyImmediate( temp );
+    	    temp = null;
+        	return dontDestroyOnLoad.GetRootGameObjects();
+    	}
+    	finally
+    	{
+    	    if( temp != null )
+    	        Object.DestroyImmediate( temp );
+    	}
+	}
+
+	private void ShowGameObjectAndParents(GameObject go)
+	{
+		if (go == null)
+		{
+			Debug.LogWarning("ShowGameObjectAndParents: provided GameObject is null.");
+			return;
+		}
+		if (go.name == "(center) generic message" || go.name == "(Center) Generic Message")
+		{
+			go.transform.GetChild(0).GetComponent<Text>().text = "This feature is currently unavaible. An implementation may be added in a future release.";
+		}
+		// Activate any disabled parents (so the object can be visible)
+		Transform t = go.transform.parent;
+		while (t != null)
+		{
+			if (!t.gameObject.activeSelf)
+			{
+				t.gameObject.SetActive(true);
+			}
+			t = t.parent;
+		}
+		// Enable the object itself
+		if (!go.activeSelf) go.SetActive(true);
+		// If it has a Canvas, make sure it's enabled and has a camera set (but do not force sorting order here).
+		Canvas c = go.GetComponent<Canvas>();
+		if (c != null)
+		{
+			c.enabled = true;
+			if (c.worldCamera == null && Shop_positioner.Instance != null)
+			{
+				c.worldCamera = Shop_positioner.Instance.GetComponent<Camera>();
+			}
+		}
+		// If there's a CanvasGroup, ensure visibility and interaction
+		CanvasGroup cg = go.GetComponent<CanvasGroup>();
+		if (cg != null)
+		{
+			cg.alpha = 1f;
+			cg.blocksRaycasts = true;
+			cg.interactable = true;
+		}
+		// Bring to front in the hierarchy
+		try
+		{
+			go.transform.SetAsLastSibling();
+		}
+		catch (System.Exception e)
+		{
+			Debug.LogWarning("Failed to set sibling for " + go.name + ": " + e.Message);
+		}
+	}
+
+	/// <summary>
+	/// Prepare overlay canvas, message and button so that the canvas stays behind
+	/// and the message/button render above it.
+	/// </summary>
+	private void PrepareAndShowOverlay(GameObject canvasGO, GameObject messageGO, GameObject buttonGO)
+	{
+		// Activate parents and objects first
+		if (canvasGO != null) ShowGameObjectAndParents(canvasGO);
+		if (messageGO != null) ShowGameObjectAndParents(messageGO);
+		if (buttonGO != null) ShowGameObjectAndParents(buttonGO);
+
+		// If there's a canvas for the overlay, set a base sorting order
+		int baseOrder = 1000;
+		Canvas overlayCanvasComp = null;
+		if (canvasGO != null)
+		{
+			overlayCanvasComp = canvasGO.GetComponent<Canvas>();
+			if (overlayCanvasComp == null)
+			{
+				// maybe the canvas is on a parent
+				overlayCanvasComp = canvasGO.GetComponentInParent<Canvas>();
+			}
+			if (overlayCanvasComp != null)
+			{
+				overlayCanvasComp.overrideSorting = true;
+				overlayCanvasComp.sortingOrder = baseOrder;
+			}
+		}
+
+		// Ensure message and button render above the base canvas
+		int messageOrder = baseOrder + 1;
+		int buttonOrder = baseOrder + 2;
+
+		if (messageGO != null)
+		{
+			Canvas msgCanvas = messageGO.GetComponent<Canvas>() ?? messageGO.GetComponentInParent<Canvas>(true);
+			if (msgCanvas != null)
+			{
+				msgCanvas.overrideSorting = true;
+				msgCanvas.sortingOrder = messageOrder;
+			}
+			// bring message to top of its canvas hierarchy
+			try { messageGO.transform.SetAsLastSibling(); } catch { }
+		}
+
+		if (buttonGO != null)
+		{
+			Canvas btnCanvas = buttonGO.GetComponent<Canvas>() ?? buttonGO.GetComponentInParent<Canvas>(true);
+			if (btnCanvas != null)
+			{
+				btnCanvas.overrideSorting = true;
+				btnCanvas.sortingOrder = buttonOrder;
+			}
+			try { buttonGO.transform.SetAsLastSibling(); } catch { }
+		}
+	}
+
+	private IEnumerator OverlayScanner()
+	{
+		int attempts = 0;
+		while (attempts < 60)
+		{
+			bool foundAny = false;
+			// Search DontDestroyOnLoad roots and their hierarchies for missing overlay refs
+			if (overlayCanvas == null || overlayMessage == null || overlayOkayButton == null)
+			{
+				GameObject[] roots = GetDontDestroyOnLoadObjects();
+				foreach (GameObject root in roots)
+				{
+					if (root == null) continue;
+					Transform[] all = root.GetComponentsInChildren<Transform>(true);
+					foreach (Transform t in all)
+					{
+						if (t == null || string.IsNullOrEmpty(t.name)) continue;
+						string n = t.name.ToLower();
+						if (overlayCanvas == null && (n == "canvas - black overlay" || n.Contains("canvas")))
+						{
+							overlayCanvas = t.gameObject;
+							Debug.Log("OverlayScanner: found canvas in DontDestroyOnLoad: " + t.name);
+							foundAny = true;
+						}
+						if (overlayMessage == null && (n == "(center) generic message" || n.Contains("message")))
+						{
+							overlayMessage = t.gameObject;
+							Debug.Log("OverlayScanner: found message in DontDestroyOnLoad: " + t.name);
+							foundAny = true;
+						}
+						if (overlayOkayButton == null && (n == "(bottom) okay button" || n.Contains("ok") || n.Contains("button")))
+						{
+							overlayOkayButton = t.gameObject;
+							Debug.Log("OverlayScanner: found button in DontDestroyOnLoad: " + t.name);
+							foundAny = true;
+						}
+						if (overlayCanvas != null && overlayMessage != null && overlayOkayButton != null) break;
+					}
+					if (overlayCanvas != null && overlayMessage != null && overlayOkayButton != null) break;
+				}
+			}
+
+			if (overlayCanvas != null || overlayMessage != null || overlayOkayButton != null)
+			{
+				// If we found any, cache references but do not activate them unless a show was requested.
+				// This prevents the overlay from appearing automatically on scene load.
+				Debug.Log("OverlayScanner: cached overlay references (not activating).\n  canvas=" + (overlayCanvas?overlayCanvas.name:"null") + ", message=" + (overlayMessage?overlayMessage.name:"null") + ", button=" + (overlayOkayButton?overlayOkayButton.name:"null"));
+				if (pendingOverlayShow)
+				{
+					// If a show is pending (user requested), then prepare+show now.
+					PrepareAndShowOverlay(overlayCanvas, overlayMessage, overlayOkayButton);
+				}
+			}
+
+			if (overlayCanvas != null && overlayMessage != null && overlayOkayButton != null)
+			{
+				if (pendingOverlayShow)
+				{
+					Debug.Log("OverlayScanner: all overlay objects found, showing overlay now.");
+					pendingOverlayShow = false;
+					// arrange canvas/message/button ordering and show
+					PrepareAndShowOverlay(overlayCanvas, overlayMessage, overlayOkayButton);
+				}
+				overlayScannerCoroutine = null;
+				yield break;
+			}
+
+			// If nothing found this iteration, wait and retry
+			if (!foundAny)
+			{
+				yield return new WaitForSeconds(0.5f);
+			}
+			else
+			{
+				// small delay to allow object initialization
+				yield return new WaitForSeconds(0.1f);
+			}
+			attempts++;
+		}
+		Debug.LogWarning("OverlayScanner: timed out without finding all overlay objects.");
+		overlayScannerCoroutine = null;
+	}
+
+	/// <summary>
+	/// Register overlay object references at runtime (alternative to assigning in Inspector).
+	/// Call this from other setup code if the objects are created dynamically.
+	/// </summary>
+	public void RegisterOverlayObjects(GameObject canvas, GameObject message, GameObject button)
+	{
+		overlayCanvas = canvas;
+		overlayMessage = message;
+		overlayOkayButton = button;
+		Debug.Log("RegisterOverlayObjects: overlay references registered: " + (canvas?canvas.name:"null") + ", " + (message?message.name:"null") + ", " + (button?button.name:"null"));
+	}
 	public void reset_ad_numbers()
 	{
 		levelups = 0;

@@ -21,6 +21,10 @@ public class MultiplayerControl : MonoBehaviour
 
 	public Text deb;
 
+	[Header("Services")]
+	[Tooltip("Set to true to enable reporting achievements to the platform Social API. Disable if you've removed Google Play Games or don't want achievement calls.")]
+	public bool achievementsEnabled = false;
+
 	[HideInInspector]
 	public bool last_known_real_time_set;
 
@@ -93,9 +97,43 @@ public class MultiplayerControl : MonoBehaviour
 
 	public void unlock_achievement(string code)
 	{
-		Social.ReportProgress(code, 100.0, delegate
+		if (!achievementsEnabled)
 		{
-		});
+			UnityEngine.Debug.Log("Achievements are disabled (achievementsEnabled=false). Skipping unlock for id: " + code);
+			return;
+		}
+		// Validate input
+		if (string.IsNullOrEmpty(code))
+		{
+			UnityEngine.Debug.LogWarning("unlock_achievement called with null or empty achievement id.");
+			return;
+		}
+
+		// Ensure user is authenticated before reporting progress
+		if (Social.localUser == null || !Social.localUser.authenticated)
+		{
+			UnityEngine.Debug.LogWarning("Cannot unlock achievement because user is not authenticated. Achievement id: " + code);
+			return;
+		}
+
+		try
+		{
+			Social.ReportProgress(code, 100.0, (bool success) =>
+			{
+				if (!success)
+				{
+					UnityEngine.Debug.LogWarning("Failed to report achievement progress for id: " + code + ". Check that the achievement ID exists and matches the platform configuration.");
+				}
+				else
+				{
+					UnityEngine.Debug.Log("Reported achievement: " + code);
+				}
+			});
+		}
+		catch (Exception e)
+		{
+			UnityEngine.Debug.LogError("Exception while reporting achievement " + code + ": " + e);
+		}
 	}
 
 	private void Authenticate()
