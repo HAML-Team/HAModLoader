@@ -5,6 +5,7 @@ namespace HAModLoaderAPI
     public interface HAMod
     {
         public string ModName => GetType().Name;
+        public string ModAuthor => GetType().Name;
         public abstract void OnModLoad();
         public abstract void OnEnterMenu();
         public abstract void OnEnterGame();

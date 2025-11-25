@@ -116,20 +116,36 @@ public static class LoadItems
     {
         if (inventory_ctr.Instance == null) return;
 
+        var inv = inventory_ctr.Instance;
+
+        // 1. Ensure dictionary exists
+        if (inv.new_inv_items_by_name == null)
+            inv.new_inv_items_by_name = new Dictionary<string, inventory_ctr.new_inv_item>(StringComparer.OrdinalIgnoreCase);
+
+        // 2. Ensure array exists
+        if (inv.new_inv_items == null)
+            inv.new_inv_items = new inventory_ctr.new_inv_item[0];
+
+        var list = inv.new_inv_items.ToList();
+
         foreach (var kv in s_cached)
         {
-            try
+            var name = kv.Key;
+            var item = kv.Value;
+
+            // ---- DICTIONARY SAFE INSERT ----
+            inv.new_inv_items_by_name[name] = item;
+
+            // ---- ARRAY SAFE INSERT ----
+            bool existsInArray = list.Any(x => x.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if (!existsInArray)
             {
-                // Ensure the runtime dictionary exists and add/replace entries
-                inventory_ctr.Instance.new_inv_items_by_name[kv.Key] = kv.Value;
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"LoadItems: failed to register item '{kv.Key}' into inventory_ctr: {ex}");
+                list.Add(item);
             }
         }
 
-        // Optionally: you can also extend inventory_ctr.Instance.new_inv_items array
-        // if you need items to appear in the serialized array (not required for lookups).
+        inv.new_inv_items = list.ToArray();
+        // Clear cache after merging
+        s_cached.Clear();
     }
 }
