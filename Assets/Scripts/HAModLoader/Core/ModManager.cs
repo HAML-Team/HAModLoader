@@ -8,7 +8,8 @@ using HAModLoaderAPI;
 
 public class ModManager : MonoBehaviour
 {
-    internal HAModLoaderAPI.HAModLoaderAPI API;
+    private HAModHandler Handler;
+    private HAModLoaderAPI.HAModLoaderAPI API;
     static string logFile;
     public static string LogFilePath => logFile;
 
@@ -61,8 +62,6 @@ public class ModManager : MonoBehaviour
             {
                 HAModLoaderAPI.Log.Info($"[ModManager] Found DLL: {path}");
                 Assembly asm = Assembly.Load(File.ReadAllBytes(path));
-
-                // Notify LoadItems of this assembly so it can scan HAItem-derived classes in the mod DLL
                 try
                 {
                     LoadItems.ScanAssembly(asm);
@@ -78,7 +77,7 @@ public class ModManager : MonoBehaviour
                 {
                     var mod = (HAMod)Activator.CreateInstance(modType);
                     ModRegistry.RegisterMod(mod);
-                    SafeInvoke(mod, "OnPreLoad", API);
+                    Handler.SafeInvoke(mod, "OnPreLoad", API);
                     HAModLoaderAPI.Log.Info($"[ModManager] Loaded mod: {modType.FullName}");
                 }
                 else HAModLoaderAPI.Log.Warning($"[ModManager] No HAMod implementation found in {asm.FullName}");
@@ -90,22 +89,7 @@ public class ModManager : MonoBehaviour
         }
 
         HAModLoaderAPI.Log.Info("[ModManager] All mods preloaded.");
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        HAModLoaderAPI.Log.Info($"[ModManager] Scene loaded: {scene.name}");
-        if (scene.name == "Menu")
-            foreach (var mod in API.loadedMods) SafeInvoke(mod, "OnEnterMenu");
-        else if (scene.name == "Game")
-            foreach (var mod in API.loadedMods) SafeInvoke(mod, "OnEnterGame");
-    }
-
-    void Update()
-    {
-        foreach (var mod in API.loadedMods)
-            SafeInvoke(mod, "Update");
+        SceneManager.sceneLoaded += Handler.OnSceneLoaded;
     }
 
     static string[] GetPlatformModPaths()
@@ -124,22 +108,5 @@ public class ModManager : MonoBehaviour
 #endif
         if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
         return Directory.GetFiles(dir, "*.dll");
-    }
-
-    void SafeInvoke(HAMod mod, string method, params object[] args)
-    {
-        var m = mod.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-        if (m != null)
-        {
-            try
-            {
-                m.Invoke(mod, args);
-                Log.Info($"[ModManager] {mod.GetType().Name}.{method} executed successfully.");
-            }
-            catch (Exception e)
-            {
-                Log.Error($"[ModManager] Error in {mod.GetType().Name}.{method}: {e}");
-            }
-        }
     }
 }
