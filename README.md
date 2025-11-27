@@ -50,9 +50,8 @@ The game's save files are inside `C:/Users/<your-username>/AppData/LocalLow/Trid
 1. Download the latest [release](https://github.com/Trident35ro/HAModLoader/releases/latest/) for MacOS
 2. Go to your downloads
 3. Unzip the `.zip` archive downloaded earlier
-4. Run `HAModLoader.dmg`
-5. Drag the HAModLoader logo into the `Aplications` folder in the opened windows
-6. Run the game and let it set up its files and folders
+4. Drag `HAModLoader.app` into the `Aplications` folder you have on your Mac
+5. Run the game and let it set up its files and folders
 
 #### Other info
 
@@ -89,7 +88,7 @@ To publish your changes make a pull request with your code and wait until it is 
 
 ## Credits
 
-- Eris3DS: Made the original HAModLoader
+- @eris-webserv: Made the original HAModLoader
 - TheFirstHybrid: Made Hybrid Animals in the first place
 
 And other members of the Hybrid Animals community I haven't mentioned here.
