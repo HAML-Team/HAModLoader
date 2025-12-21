@@ -1,0 +1,124 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using HAModLoaderAPI;
+
+public static class LoadCreatures
+{
+    // Cache discovered creatures until Loader exists
+    private static readonly Dictionary<string, Sprite> s_cached =
+        new Dictionary<string, Sprite>(StringComparer.OrdinalIgnoreCase);
+
+    private static bool s_registeredSceneCallback = false;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    public static void RegisterHACreatures()
+    {
+        try
+        {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            foreach (var a in assemblies)
+                SafeProcessAssembly(a);
+
+            TryMergeIntoLoader();
+
+            if (!s_registeredSceneCallback)
+            {
+                SceneManager.sceneLoaded += OnSceneLoaded;
+                s_registeredSceneCallback = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"LoadCreatures.RegisterHACreatures() failed: {ex}");
+        }
+    }
+
+    // Called by ModManager when a mod assembly is loaded
+    public static void ScanAssembly(Assembly asm)
+    {
+        SafeProcessAssembly(asm);
+        TryMergeIntoLoader();
+    }
+
+    private static void SafeProcessAssembly(Assembly asm)
+    {
+        if (asm == null) return;
+
+        try
+        {
+            ProcessTypes(asm.GetTypes());
+        }
+        catch (ReflectionTypeLoadException ex)
+        {
+            ProcessTypes(ex.Types.Where(t => t != null).ToArray());
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"LoadCreatures: error processing assembly '{asm.FullName}': {ex}");
+        }
+    }
+
+    private static void ProcessTypes(Type[] types)
+    {
+        if (types == null) return;
+
+        foreach (var t in types)
+        {
+            if (t == null) continue;
+
+            try
+            {
+                if (!typeof(HACreature).IsAssignableFrom(t) || t.IsAbstract)
+                    continue;
+
+                var creature = Activator.CreateInstance(t) as HACreature;
+                if (creature == null) continue;
+                if (string.IsNullOrEmpty(creature.name)) continue;
+                if (creature.sprite == null) continue;
+
+                s_cached[creature.name] = creature.sprite;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"LoadCreatures: failed to instantiate HACreature '{t.FullName}': {ex}");
+            }
+        }
+    }
+
+    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        TryMergeIntoLoader();
+    }
+
+    private static void TryMergeIntoLoader()
+    {
+        var loader = UnityEngine.Object.FindObjectOfType<Loader>();
+        if (loader == null) return;
+
+        var names = loader.temp_static_names != null
+            ? loader.temp_static_names.ToList()
+            : new List<string>();
+
+        var sprites = loader.creatureSprites != null
+            ? loader.creatureSprites.ToList()
+            : new List<Sprite>();
+
+        foreach (var kv in s_cached)
+        {
+            if (names.Any(n => n.Equals(kv.Key, StringComparison.OrdinalIgnoreCase)))
+                continue;
+
+            names.Add(kv.Key);
+            sprites.Add(kv.Value);
+        }
+
+        loader.temp_static_names = names.ToArray();
+        loader.creatureSprites = sprites.ToArray();
+
+        s_cached.Clear();
+    }
+}
