@@ -1,7 +1,7 @@
-<color=#f0f0f0>HYBRID</color> ANIMALS~<size=73><color=#f0f0f0>ГИБРИД</color> ЖИВОТНЫЕ</size>
-<color=#ffffff>HYBRID</color> ANIMALS~<size=73><color=#ffffff>ГИБРИД</color> ЖИВОТНЫЕ</size>
-<color=#bbbbbb>HYBRID</color> ANIMALS~<size=73><color=#bbbbbb>ГИБРИД</color> ЖИВОТНЫЕ</size>
-<color=#727272>HYBRID</color> ANIMALS~<size=73><color=#727272>ГИБРИД</color> ЖИВОТНЫЕ</size>
+<color=#f0f0f0>HYBRID</color> ANIMALS~<size=73><color=#f0f0f0>HAMOD</color>LOADER</size>
+<color=#ffffff>HYBRID</color> ANIMALS~<size=73><color=#ffffff>HAMOD</color>LOADER</size>
+<color=#bbbbbb>HYBRID</color> ANIMALS~<size=73><color=#bbbbbb>HAMOD</color>LOADER</size>
+<color=#727272>HYBRID</color> ANIMALS~<size=73><color=#727272>HAMOD</color>LOADER</size>
 
 Who dares to disturb the great 'Vitamin Ape'?!~Кто посмеет потревожить великую «Витаминную обезьяну»?!
 I am half Carrot, half Gorilla!~Я наполовину Морковь, наполовину Горилла!

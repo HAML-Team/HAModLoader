@@ -1,7 +1,7 @@
-<color=#f0f0f0>HYBRID</color> ANIMALS~<SIZE=110><color=#f0f0f0>สัตว์</color>ไฮบริด</size>
-<color=#ffffff>HYBRID</color> ANIMALS~<SIZE=110><color=#ffffff>สัตว์</color>ไฮบริด</size>
-<color=#bbbbbb>HYBRID</color> ANIMALS~<SIZE=110><color=#bbbbbb>สัตว์</color>ไฮบริด</size>
-<color=#727272>HYBRID</color> ANIMALS~<SIZE=110><color=#727272>สัตว์</color>ไฮบริด</size>
+<color=#f0f0f0>HYBRID</color> ANIMALS~<SIZE=110><color=#f0f0f0>ฮาโมด</color>โลเดอร์</size>
+<color=#ffffff>HYBRID</color> ANIMALS~<SIZE=110><color=#ffffff>ฮาโมด</color>โลเดอร์</size>
+<color=#bbbbbb>HYBRID</color> ANIMALS~<SIZE=110><color=#bbbbbb>ฮาโมด</color>โลเดอร์</size>
+<color=#727272>HYBRID</color> ANIMALS~<SIZE=110><color=#727272>ฮาโมด</color>โลเดอร์</size>
 
 Who dares to disturb the great 'Vitamin Ape'?!~ใครกล้ารบกวน ลิงวิตามิน ที่ยอดเยี่ยม?!
 I am half Carrot, half Gorilla!~ฉันเป็นแครอทครึ่งลูกครึ่งกอริลลา!

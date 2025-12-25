@@ -1,7 +1,7 @@
-<color=#f0f0f0>HYBRID</color> ANIMALS~<color=#f0f0f0>HYBRYD</color> ZWIERZĄT
-<color=#ffffff>HYBRID</color> ANIMALS~<color=#ffffff>HYBRYD</color> ZWIERZĄT
-<color=#bbbbbb>HYBRID</color> ANIMALS~<color=#bbbbbb>HYBRYD</color> ZWIERZĄT
-<color=#727272>HYBRID</color> ANIMALS~<color=#727272>HYBRYD</color> ZWIERZĄT
+<color=#f0f0f0>HYBRID</color> ANIMALS~<color=#f0f0f0>HAMOD</color>LOADER
+<color=#ffffff>HYBRID</color> ANIMALS~<color=#ffffff>HAMOD</color>LOADER
+<color=#bbbbbb>HYBRID</color> ANIMALS~<color=#bbbbbb>HAMOD</color>LOADER
+<color=#727272>HYBRID</color> ANIMALS~<color=#727272>HAMOD</color>LOADER
 
 Who dares to disturb the great 'Vitamin Ape'?!~Kto ośmiela się przeszkadzać wspaniałej „Witamiej Małpie”?
 I am half Carrot, half Gorilla!~Jestem pół marchewką, pół gorylem!
