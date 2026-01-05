@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 using System.Reflection;
+using System.IO;
 
 namespace HAModLoaderAPI
 {
@@ -33,6 +34,19 @@ namespace HAModLoaderAPI
                     catch (System.Exception e) { Debug.LogError($"[HAModLoader] Error in {mod.GetType().Name}.OnCreate: {e}"); }
                 }
             }
+        }
+
+        public static string GetModDataPath(Assembly assembly, string fileName)
+        {
+            string dllPath = assembly.Location;
+            // If Location is empty (happens on some Android setups), fallback to persistentDataPath
+            if (string.IsNullOrEmpty(dllPath))
+                dllPath = Path.Combine(Application.persistentDataPath, "Mods", assembly.GetName().Name + ".dll");
+
+            string modDir = Path.GetDirectoryName(dllPath);
+            string modName = Path.GetFileNameWithoutExtension(dllPath);
+
+            return Path.Combine(modDir, modName, fileName);
         }
     }
 }
