@@ -1,7 +1,10 @@
 {
-    "name": "HAModLoader.API",
+    "name": "NewAssembly",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:8d1e23ada91cffb3f899ecf3580582a1",
+        "GUID:3082f4d6c6858d6468b7b3b1b5ed2ca2"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

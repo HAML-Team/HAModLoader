@@ -15,7 +15,10 @@ public class HAModHandler
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         foreach (var mod in API.loadedMods)
-            SafeInvoke(mod, "OnEnterScene", scene);
+        {
+            if (ModConfig.IsModEnabled(mod.ModName))
+                SafeInvoke(mod, "OnEnterScene", scene);
+        }
     }
 
     void Update()
@@ -23,7 +26,8 @@ public class HAModHandler
         if (API == null) return;
 
         foreach (var mod in API.loadedMods)
-            SafeInvoke(mod, "Update");
+            if (ModConfig.IsModEnabled(mod.ModName))
+                SafeInvoke(mod, "Update");
     }
 
     public void SafeInvoke(HAMod mod, string method, params object[] args)
@@ -39,5 +43,10 @@ public class HAModHandler
         {
             Log.Error($"[ModLifecycleHandler] Error in {mod.GetType().Name}.{method}: {e}");
         }
+    }
+
+    public void Awake()
+    {
+        HAModLoaderAPI.Image.ResourceExtractor = LoadAssets.ExtractResourceToCache;
     }
 }
