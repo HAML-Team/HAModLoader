@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
@@ -65,21 +66,24 @@ public static class LoadCreatures
     private static void ProcessTypes(Type[] types)
     {
         if (types == null) return;
-
         foreach (var t in types)
         {
             if (t == null) continue;
-
             try
             {
                 if (!typeof(HACreature).IsAssignableFrom(t) || t.IsAbstract)
                     continue;
-
                 var creature = Activator.CreateInstance(t) as HACreature;
-                if (creature == null) continue;
-                if (string.IsNullOrEmpty(creature.name)) continue;
-                if (creature.sprite == null) continue;
-
+                if (creature == null || string.IsNullOrEmpty(creature.name)) continue;
+                string streamingPath = Path.Combine(Application.streamingAssetsPath, "Creatures");
+                if (!Directory.Exists(streamingPath)) Directory.CreateDirectory(streamingPath);
+                // Attempt to extract .tbc or .tbcx
+                string[] extensions = { ".tbc", ".tbcx" };
+                foreach (var ext in extensions)
+                {
+                    // ExtractResourceToCache is modified to accept a custom target path
+                    LoadAssets.ExtractResourceToSpecificPath(t.Assembly, creature.name + ext, streamingPath);
+                }
                 s_cached[creature.name] = creature.sprite;
             }
             catch (Exception ex)
@@ -87,6 +91,11 @@ public static class LoadCreatures
                 Debug.LogError($"LoadCreatures: failed to instantiate HACreature '{t.FullName}': {ex}");
             }
         }
+    }
+
+    public static void ClearStaticCache()
+    {
+        s_cached.Clear();
     }
 
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)

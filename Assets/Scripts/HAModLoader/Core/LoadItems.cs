@@ -67,6 +67,7 @@ public static class LoadItems
     private static void ProcessTypes(Type[] types)
     {
         if (types == null) return;
+        Assembly asm = types.FirstOrDefault()?.Assembly;
         foreach (var t in types)
         {
             if (t == null) continue;
@@ -76,7 +77,16 @@ public static class LoadItems
 
                 var haObj = Activator.CreateInstance(t) as HAItem;
                 if (haObj == null || string.IsNullOrEmpty(haObj.name)) continue;
-
+                if (haObj.inventory_sprite == null)
+                {
+                    var autoSprite = new HASprite(haObj.name + ".png");
+                    var tex = autoSprite.ToUnity();
+                    if (tex == null)
+                    {
+                        autoSprite = new HASprite(haObj.name + ".jpg");
+                    }
+                    haObj.inventory_sprite = autoSprite;
+                }
                 var entry = new inventory_ctr.new_inv_item
                 {
                     name = haObj.name,
@@ -96,8 +106,6 @@ public static class LoadItems
                     equip_required_stat_lvl = haObj.equip_required_stat_lvl,
                     market_cost = haObj.market_cost
                 };
-
-                // Cache by name (overwrites duplicates)
                 s_cached[entry.name] = entry;
             }
             catch (Exception ex)
@@ -105,6 +113,11 @@ public static class LoadItems
                 Debug.LogError($"LoadItems: failed to instantiate HAItem type '{t.FullName}': {ex}");
             }
         }
+    }
+
+    public static void ClearStaticCache()
+    {
+        s_cached.Clear();
     }
 
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
