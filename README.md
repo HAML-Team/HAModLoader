@@ -92,7 +92,6 @@ To publish your changes make a pull request with your code and wait until it is 
 - TheFirstHybrid: Made Hybrid Animals in the first place
 
 And other members of the Hybrid Animals community I haven't mentioned here.
-
 ## License
 
 This project is protected trought the [GNU General Public License V3.0(GPL)](http://https://github.com/Trident35ro/HAModLoader/blob/main/LICENSE "GNU General Public License V3.0").
