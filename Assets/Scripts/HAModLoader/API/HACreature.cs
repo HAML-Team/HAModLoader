@@ -9,5 +9,6 @@ namespace HAModLoaderAPI
     {
         public string name;
         public Sprite sprite;
+        public HACreatureFile creatureFile;
     }
 }

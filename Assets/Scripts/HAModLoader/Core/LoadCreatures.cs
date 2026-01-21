@@ -66,6 +66,9 @@ public static class LoadCreatures
     private static void ProcessTypes(Type[] types)
     {
         if (types == null) return;
+        string streamingPath = Path.Combine(Application.streamingAssetsPath, "Creatures");
+        bool dirChecked = false;
+
         foreach (var t in types)
         {
             if (t == null) continue;
@@ -75,8 +78,12 @@ public static class LoadCreatures
                     continue;
                 var creature = Activator.CreateInstance(t) as HACreature;
                 if (creature == null || string.IsNullOrEmpty(creature.name)) continue;
-                string streamingPath = Path.Combine(Application.streamingAssetsPath, "Creatures");
-                if (!Directory.Exists(streamingPath)) Directory.CreateDirectory(streamingPath);
+
+                if (!dirChecked)
+                {
+                    if (!Directory.Exists(streamingPath)) Directory.CreateDirectory(streamingPath);
+                    dirChecked = true;
+                }
                 // Attempt to extract .tbc or .tbcx
                 string[] extensions = { ".tbc", ".tbcx" };
                 foreach (var ext in extensions)
@@ -105,6 +112,8 @@ public static class LoadCreatures
 
     private static void TryMergeIntoLoader()
     {
+        if (s_cached.Count == 0) return;
+
         var loader = UnityEngine.Object.FindObjectOfType<Loader>();
         if (loader == null) return;
 
@@ -116,17 +125,25 @@ public static class LoadCreatures
             ? loader.creatureSprites.ToList()
             : new List<Sprite>();
 
+        var existingNames = new HashSet<string>(names, StringComparer.OrdinalIgnoreCase);
+        bool modified = false;
+
         foreach (var kv in s_cached)
         {
-            if (names.Any(n => n.Equals(kv.Key, StringComparison.OrdinalIgnoreCase)))
+            if (existingNames.Contains(kv.Key))
                 continue;
 
             names.Add(kv.Key);
             sprites.Add(kv.Value);
+            existingNames.Add(kv.Key);
+            modified = true;
         }
 
-        loader.temp_static_names = names.ToArray();
-        loader.creatureSprites = sprites.ToArray();
+        if (modified)
+        {
+            loader.temp_static_names = names.ToArray();
+            loader.creatureSprites = sprites.ToArray();
+        }
 
         s_cached.Clear();
     }

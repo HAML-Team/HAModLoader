@@ -61,6 +61,36 @@ public class LoadAssets : MonoBehaviour
         return filePath;
     }
 
+    public static string ExtractResourceToFile(Assembly assembly, string resourceName, string destinationPath)
+    {
+        if (File.Exists(destinationPath)) return destinationPath;
+
+        // Search mod folder first
+        string dllPath = assembly.Location;
+        if (!string.IsNullOrEmpty(dllPath))
+        {
+            string modDir = Path.GetDirectoryName(dllPath);
+            string externalPath = Path.Combine(modDir, Path.GetFileNameWithoutExtension(dllPath), resourceName);
+            if (File.Exists(externalPath))
+            {
+                File.Copy(externalPath, destinationPath);
+                return destinationPath;
+            }
+        }
+
+        // Fallback: Extract from Assembly
+        string[] allResources = assembly.GetManifestResourceNames();
+        string actualName = Array.Find(allResources, r => r.EndsWith(resourceName, StringComparison.OrdinalIgnoreCase));
+        if (actualName == null) return null;
+
+        using (Stream stream = assembly.GetManifestResourceStream(actualName))
+        using (FileStream fs = new FileStream(destinationPath, FileMode.Create))
+        {
+            stream?.CopyTo(fs);
+        }
+        return destinationPath;
+    }
+
     public static string ExtractResourceToSpecificPath(Assembly assembly, string resourceName, string targetDir)
     {
         // Search mod folder first
