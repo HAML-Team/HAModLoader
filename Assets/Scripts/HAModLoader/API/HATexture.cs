@@ -23,9 +23,16 @@ namespace HAModLoaderAPI
         {
             if (_unityTex == null && !string.IsNullOrEmpty(SourcePath))
             {
-                byte[] data = System.IO.File.ReadAllBytes(SourcePath);
-                _unityTex = new Texture2D(2, 2);
-                ImageConversion.LoadImage(_unityTex, data);
+                if (System.IO.File.Exists(SourcePath))
+                {
+                    byte[] data = System.IO.File.ReadAllBytes(SourcePath);
+                    _unityTex = new Texture2D(2, 2);
+                    ImageConversion.LoadImage(_unityTex, data);
+                }
+                else
+                {
+                    Debug.LogError($"[HAModLoader] Texture file not found: {SourcePath}");
+                }
             }
             return _unityTex;
         }

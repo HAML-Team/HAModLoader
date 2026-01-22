@@ -47,6 +47,7 @@ public class ModManager : MonoBehaviour
         Log.LogFile = logFile;
         Log.GetLoadedMods = () => ModRegistry.LoadedMods;
         LoadAssets.InitializeAPI();
+        TranslationControl.ApiTranslationHook = HAModLoaderAPI.ModLocalization.TryGet;
         HAModLoaderAPI.Log.Info("[ModManager] Mod loader initialized successfully.");
     }
 

@@ -16,11 +16,16 @@ public class TranslationControl : MonoBehaviour
 
 	public static TranslationControl Instance;
 
+	public delegate bool TryGetTranslation(string key, out string result);
+	public static TryGetTranslation ApiTranslationHook;
+
 	public languages test_language;
 
 	public Dictionary<string, string> translations = new Dictionary<string, string>();
 
 	private languages use_language;
+
+	public languages CurrentLanguage => use_language;
 
 	private void Awake()
 	{
@@ -93,6 +98,10 @@ public class TranslationControl : MonoBehaviour
 
 	public string Translate(string text)
 	{
+		if (ApiTranslationHook != null && ApiTranslationHook(text, out string modTranslation))
+		{
+			return modTranslation.Replace("`", "\n");
+		}
 		if (use_language == languages.English)
 		{
 			return text.Replace("`", "\n");
